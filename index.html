@@ -3285,19 +3285,19 @@ function showToast(message) {
     console.warn(`[تنبيه]: ${message}`); 
     alert(message);
 }
-/*
+
 // دالة لفتح محادثة واتساب
 function openWhatsApp(p, text) {
     const encoded = encodeURIComponent(text || "");
     const waUrl = `https://wa.me/${p}?text=${encoded}`;
     window.open(waUrl, "_blank", "noopener,noreferrer");
-}
+}/*
   // دالة لفتح محادثة واتساب
 function openWhatsApp(p, text) {
     const encoded = encodeURIComponent(text || "");
     const waUrl = `https://wa.me/${p}?text=${encoded}`;
     window.open(waUrl, "_blank", "noopener,noreferrer");
-}*/
+}
 function openWhatsApp(p, text) {
   const encoded = encodeURIComponent(text || "");
   const isMobile = /Android|iPhone|iPad|iPod|IEMobile|WPDesktop/i.test(navigator.userAgent);
@@ -3313,7 +3313,7 @@ function openWhatsApp(p, text) {
       break;
     }
   }
-}*/
+}
 /**
  * دالة مساعدة لفتح محادثة واتساب (تأكد من وجودها)
 function openWhatsApp(phoneNumber, text) {
@@ -4085,6 +4085,7 @@ function generateAndSendDirect(type) {
   
  </body>
 </html>
+
 
 
 
