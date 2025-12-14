@@ -3285,11 +3285,50 @@ function showToast(message) {
     console.warn(`[تنبيه]: ${message}`); 
     alert(message);
 }
-
+/*
 // دالة لفتح محادثة واتساب
 function openWhatsApp(p, text) {
     const encoded = encodeURIComponent(text || "");
     const waUrl = `https://wa.me/${p}?text=${encoded}`;
+    window.open(waUrl, "_blank", "noopener,noreferrer");
+}
+  // دالة لفتح محادثة واتساب
+function openWhatsApp(p, text) {
+    const encoded = encodeURIComponent(text || "");
+    const waUrl = `https://wa.me/${p}?text=${encoded}`;
+    window.open(waUrl, "_blank", "noopener,noreferrer");
+}
+function openWhatsApp(p, text) {
+  const encoded = encodeURIComponent(text || "");
+  const isMobile = /Android|iPhone|iPad|iPod|IEMobile|WPDesktop/i.test(navigator.userAgent);
+  const waMe = `https://wa.me/${p}?text=${encoded}`;
+  const waWeb = `https://web.whatsapp.com/send?phone=${p}&text=${encoded}`;
+  const waProtocol = `whatsapp://send?phone=${p}&text=${encoded}`;
+  
+  const tryUrls = isMobile ? [waProtocol, waMe, waWeb] : [waMe, waWeb, waProtocol];
+  
+  for (const url of tryUrls) {
+    const win = window.open(url, "_blank", "noopener,noreferrer");
+    if (win) {
+      break;
+    }
+  }
+}*/
+/**
+ * دالة مساعدة لفتح محادثة واتساب (تأكد من وجودها)
+ */
+function openWhatsApp(phoneNumber, text) {
+    const encodedText = encodeURIComponent(text || "");
+    let waUrl;
+    
+    if (phoneNumber && phoneNumber.trim() !== '') {
+        // حالة رقم محدد
+        waUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+    } else {
+        // حالة الإرسال العام (بدون رقم)
+        waUrl = `https://wa.me/?text=${encodedText}`;
+    }
+    
     window.open(waUrl, "_blank", "noopener,noreferrer");
 }
 
@@ -4046,4 +4085,5 @@ function generateAndSendDirect(type) {
   
  </body>
 </html>
+
 
