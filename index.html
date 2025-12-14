@@ -3297,7 +3297,7 @@ function openWhatsApp(p, text) {
     const encoded = encodeURIComponent(text || "");
     const waUrl = `https://wa.me/${p}?text=${encoded}`;
     window.open(waUrl, "_blank", "noopener,noreferrer");
-}
+}*/
 function openWhatsApp(p, text) {
   const encoded = encodeURIComponent(text || "");
   const isMobile = /Android|iPhone|iPad|iPod|IEMobile|WPDesktop/i.test(navigator.userAgent);
@@ -3316,7 +3316,6 @@ function openWhatsApp(p, text) {
 }*/
 /**
  * دالة مساعدة لفتح محادثة واتساب (تأكد من وجودها)
- */
 function openWhatsApp(phoneNumber, text) {
     const encodedText = encodeURIComponent(text || "");
     let waUrl;
@@ -3330,7 +3329,8 @@ function openWhatsApp(phoneNumber, text) {
     }
     
     window.open(waUrl, "_blank", "noopener,noreferrer");
-}
+} */
+
 
 /**
  * دالة موحدة ومصححة لتجميع بيانات الاستبيان وإرسالها عبر واتساب
@@ -4085,5 +4085,6 @@ function generateAndSendDirect(type) {
   
  </body>
 </html>
+
 
 
