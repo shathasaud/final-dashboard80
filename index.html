@@ -2597,10 +2597,41 @@ function normalizeName(name) {
 const TEACHER_WHATSAPP = "966555320501";
 
 // دالة لفتح محادثة واتساب (تدعم الويب والموبايل)
-function openWhatsApp(p, text) {
+/*function openWhatsApp(p, text) {
   const encoded = encodeURIComponent(text || "");
-  const isMobile = /Android|iPhone|iPad|iPod|IEMobile|WPDesktop/i.test(navigator.userAgent);
+  const isMobile = /Android|iPhone|iPad|iPod|IEMobile|WPDesktop/i.test(navigator.userAgent);*/
   
+  // في ملف لوحة ولي الأمر (أو الطالبة، أو المعلمة)
+
+// ... (بعد التعريفات الأساسية مثل const $ = s => document.querySelector(s);)
+
+// 🔍 ابحث عن هذه الدالة: 
+// function openWhatsApp(p, text) { ... } 
+// ⬇️ واستبدلها بهذه الدالة المصححة بالكامل:
+
+/**
+ * دالة مساعدة لفتح محادثة واتساب
+ * @param {string} phoneNumber - رقم الهاتف (اختياري، يترك فارغًا للرسائل العامة)
+ * @param {string} text - نص الرسالة المراد إرسالها
+ */
+function openWhatsApp(phoneNumber, text) {
+    const encodedText = encodeURIComponent(text || "");
+    
+    let waUrl;
+    
+    if (phoneNumber && phoneNumber.trim() !== '') {
+        // حالة: التواصل مع رقم محدد (ولي أمر/معلمة)
+        waUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+    } else {
+        // حالة: الإرسال المفتوح (المعلمة تختار المستلم يدوياً)
+        waUrl = `https://wa.me/?text=${encodedText}`;
+    }
+    
+    // استخدام window.open لفتح الرابط
+    window.open(waUrl, "_blank", "noopener,noreferrer");
+}
+
+// ... (استمرار باقي الكود، مثل وظائف إرسال الاستبيان)
   // محاولة wa.me (الأكثر توافقًا)
   const waMe = `https://wa.me/${p}?text=${encoded}`;
   // محاولة web.whatsapp.com
@@ -3997,8 +4028,16 @@ function generateAndSendDirect(type) {
     }
 
     // فتح واتساب بالرسالة المنسقة (دون رقم)
+   /* const finalMessage = encodeURIComponent(messageBody);
+    window.open(whatsappBaseUrl + finalMessage, "_blank", "noopener,noreferrer");*/
+     
+    // فتح واتساب بالرسالة المنسقة (دون رقم)
+   /* const finalMessage = encodeURIComponent(messageBody);
+    window.open(whatsappBaseUrl + finalMessage, "_blank", "noopener,noreferrer");*/
     const finalMessage = encodeURIComponent(messageBody);
-    window.open(whatsappBaseUrl + finalMessage, "_blank", "noopener,noreferrer");
+    const waUrl = `https://wa.me/?text=${finalMessage}`; // رابط عام بدون رقم
+    
+    window.open(waUrl, "_blank", "noopener,noreferrer");
 
     // إظهار تنبيه بسيط للمستخدم بعد إرسال الأمر
     alert(`✅ تم تجهيز رسالة نوع: ${type}. سيتم فتح نافذة واتساب الآن، يرجى اختيار جهة اتصال ولي الأمر لإرسال الرسالة.`);
@@ -4007,3 +4046,4 @@ function generateAndSendDirect(type) {
   
  </body>
 </html>
+
